@@ -32,3 +32,51 @@
   padding: 24px;
   overflow-y: auto;
 }
+@media (max-width: 992px) {
+  .sidebar {
+    width: 220px;
+    min-width: 220px;
+  }
+
+  .header {
+    height: auto;
+    min-height: 72px;
+  }
+
+  .page-content {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(110, 231, 183, 0.12);
+    box-shadow: none;
+  }
+
+  .header {
+    height: auto;
+    min-height: 64px;
+  }
+
+  .page-content {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-content {
+    padding: 10px;
+  }
+
+  .header {
+    min-height: 56px;
+  }
+}

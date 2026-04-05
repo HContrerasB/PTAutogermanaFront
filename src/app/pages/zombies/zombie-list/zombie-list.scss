@@ -213,3 +213,82 @@
     flex-wrap: wrap;
   }
 }
+@media (max-width: 768px) {
+  .zombie-list-page {
+    gap: 16px;
+  }
+
+  .page-title h1 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .page-title p {
+    font-size: 0.9rem;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .panel-card {
+    border-radius: 16px;
+  }
+
+  .filter-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .zombie-table {
+    min-width: 780px;
+  }
+
+  .estado-badge {
+    min-width: 78px;
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .pagination-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .page-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title h1 {
+    font-size: 1.3rem;
+  }
+
+  .panel-card {
+    border-radius: 14px;
+  }
+
+  .card-header h2 {
+    font-size: 1rem;
+  }
+
+  .count-chip {
+    font-size: 0.78rem;
+    padding: 6px 10px;
+  }
+
+  .page-info {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+}

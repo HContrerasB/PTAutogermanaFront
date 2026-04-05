@@ -229,3 +229,78 @@
     grid-template-columns: 1fr;
   }
 }
+@media (max-width: 768px) {
+  .ranking-page {
+    gap: 16px;
+  }
+
+  .page-title h1 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .page-title p {
+    font-size: 0.9rem;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .top-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .top-score {
+    font-size: 2rem;
+  }
+
+  .top-title {
+    font-size: 0.95rem;
+  }
+
+  .top-date {
+    font-size: 0.85rem;
+  }
+
+  .ranking-table {
+    min-width: 700px;
+  }
+
+  .position-badge {
+    min-width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title h1 {
+    font-size: 1.3rem;
+  }
+
+  .top-card,
+  .panel-card {
+    border-radius: 14px;
+  }
+
+  .top-score {
+    font-size: 1.7rem;
+  }
+
+  .medal {
+    font-size: 1.6rem;
+  }
+
+  .top-title {
+    font-size: 0.9rem;
+  }
+
+  .meta-label,
+  .top-date {
+    font-size: 0.8rem;
+  }
+}
