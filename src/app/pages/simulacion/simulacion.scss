@@ -353,3 +353,82 @@
   object-fit: contain;
   border-radius: 12px;
 }
+@media (max-width: 1100px) {
+  .top-grid,
+  .bottom-grid,
+  .field-group,
+  .result-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .simulacion-page {
+    gap: 16px;
+    padding: 12px;
+  }
+
+  .page-title h1 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .page-title p {
+    font-size: 0.9rem;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .visual-zone {
+    min-height: auto;
+  }
+
+  .simulation-gif {
+    max-height: 160px;
+  }
+
+  .metric-box strong {
+    font-size: 1.2rem;
+  }
+
+  .history-table {
+    min-width: 650px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title h1 {
+    font-size: 1.3rem;
+  }
+
+  .panel-card {
+    border-radius: 14px;
+  }
+
+  .simulation-gif {
+    max-height: 120px;
+  }
+
+  .gif-placeholder {
+    min-height: 120px;
+    padding: 8px;
+  }
+
+  .zombie-icon,
+  .impact-icon {
+    font-size: 2.2rem;
+  }
+}
