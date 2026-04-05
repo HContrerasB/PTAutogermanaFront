@@ -57,3 +57,108 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+# 🧟 Zombie Defense System
+
+Sistema fullstack para la gestión, simulación y análisis estratégico de defensa contra hordas de zombies.
+
+Desarrollado como **prueba técnica Fullstack**, implementando buenas prácticas de arquitectura, separación por capas y una interfaz moderna enfocada en experiencia de usuario.
+
+---
+
+## 🚀 Demo en Vivo
+
+### 🌐 Frontend
+https://zombie-defense-front.web.app
+
+### ⚙️ Backend API
+https://zombie-defense-api.onrender.com/swagger
+
+---
+
+## 🏗️ Arquitectura
+
+El backend fue desarrollado siguiendo principios de:
+
+- **Clean Architecture**
+- **CQRS**
+- **MediatR**
+- **Repository Pattern**
+- **Dependency Injection**
+- **Entity Framework Core**
+- **Middleware para API Key**
+- **Swagger con documentación**
+
+### 📂 Estructura backend
+```text
+ZombieDefenseSystem
+│
+├── ZombieDefenseSystem.Api
+├── ZombieDefenseSystem.Application
+├── ZombieDefenseSystem.Domain
+└── ZombieDefenseSystem.Infrastructure
+src/app
+│
+├── core
+│   ├── models
+│   └── services
+│
+├── layout
+│   ├── header
+│   ├── sidebar
+│   └── dashboard-layout
+│
+└── pages
+    ├── zombies
+    ├── simulacion
+    ├── ranking
+    └── estadisticas
+    🛠️ Stack Tecnológico
+Backend
+.NET 8
+ASP.NET Core Web API
+Entity Framework Core
+SQL Server
+MediatR
+Swagger / OpenAPI
+Frontend
+Angular
+TypeScript
+SCSS
+RxJS
+Angular Router
+Firebase Hosting
+Deploy
+Frontend: Firebase Hosting
+Backend: Render
+Base de datos: SQL Server
+🎯 Funcionalidades
+🧟 Gestión de Zombies
+Crear zombies
+Editar zombies
+Activar / desactivar
+Listado completo
+Tipos de amenaza
+Balance de atributos:
+tiempo de disparo
+balas necesarias
+puntaje
+amenaza
+🎮 Simulación
+Simulación de defensa por:
+tiempo disponible
+munición
+cálculo de:
+zombies eliminados
+puntaje final
+estrategia óptima
+animación visual con GIF de impacto
+🏆 Ranking
+Ranking por puntajes
+historial de simulaciones
+mejores resultados
+📊 Estadísticas
+métricas generales
+promedio de eliminaciones
+score acumulado
+desempeño por simulación
