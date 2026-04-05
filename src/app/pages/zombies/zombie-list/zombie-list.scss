@@ -1,0 +1,215 @@
+.zombie-list-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.page-title {
+  h1 {
+    margin: 0 0 8px;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  p {
+    margin: 0;
+    color: #94a3b8;
+    max-width: 900px;
+  }
+}
+
+.panel-card {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(9, 14, 27, 0.98));
+  border: 1px solid rgba(110, 231, 183, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  color: #f8fafc;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+
+  h2 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+}
+
+.filter-form {
+  display: grid;
+  grid-template-columns: 220px 220px auto;
+  gap: 16px;
+  align-items: start;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-primary,
+.btn-secondary {
+  min-width: 140px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #10b981, #3b82f6);
+  color: white !important;
+  border: none;
+}
+
+.btn-secondary {
+  color: #dbe4ff !important;
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+.error-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(127, 29, 29, 0.22);
+  border: 1px solid rgba(248, 113, 113, 0.28);
+  color: #fca5a5;
+}
+
+.count-chip {
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.zombie-table {
+  width: 100%;
+  background: transparent !important;
+}
+
+.estado-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  font-weight: 700;
+  font-size: 0.85rem;
+
+  &.inactivo {
+    background: rgba(248, 113, 113, 0.12);
+    border-color: rgba(248, 113, 113, 0.2);
+    color: #fca5a5;
+  }
+}
+
+.edit-btn {
+  color: #93c5fd !important;
+}
+
+.pagination-container {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.page-info {
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.page-btn {
+  border-radius: 12px !important;
+  color: #e2e8f0 !important;
+  border-color: rgba(148, 163, 184, 0.3) !important;
+  background: rgba(255, 255, 255, 0.02);
+
+  &:disabled {
+    opacity: 0.45;
+  }
+}
+
+.empty-state {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  color: #94a3b8;
+
+  mat-icon {
+    font-size: 42px;
+    width: 42px;
+    height: 42px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+:host ::ng-deep .zombie-table .mat-mdc-header-row {
+  background: rgba(15, 23, 42, 0.85);
+}
+
+:host ::ng-deep .zombie-table .mat-mdc-header-cell {
+  color: #94a3b8 !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2) !important;
+}
+
+:host ::ng-deep .zombie-table .mat-mdc-cell {
+  color: #f8fafc !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08) !important;
+}
+
+:host ::ng-deep .zombie-table .mat-mdc-row {
+  background: transparent !important;
+}
+
+:host ::ng-deep .zombie-table .mat-mdc-row:hover {
+  background: rgba(59, 130, 246, 0.06) !important;
+}
+
+:host ::ng-deep .zombie-table .mdc-data-table__header-cell {
+  color: #94a3b8 !important;
+}
+
+:host ::ng-deep .zombie-table .mdc-data-table__cell {
+  color: #f8fafc !important;
+}
+
+@media (max-width: 1100px) {
+  .filter-form {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-actions {
+    flex-wrap: wrap;
+  }
+}

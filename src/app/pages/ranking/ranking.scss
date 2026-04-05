@@ -1,0 +1,231 @@
+.ranking-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.page-title {
+  h1 {
+    margin: 0 0 8px;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  p {
+    margin: 0;
+    color: #94a3b8;
+    max-width: 900px;
+  }
+}
+
+.error-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(127, 29, 29, 0.22);
+  border: 1px solid rgba(248, 113, 113, 0.28);
+  color: #fca5a5;
+}
+
+.top3-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.top-card {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(9, 14, 27, 0.98));
+  border: 1px solid rgba(110, 231, 183, 0.12);
+  border-radius: 20px;
+  color: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gold-card {
+  border-color: rgba(250, 204, 21, 0.4);
+  box-shadow: 0 8px 30px rgba(250, 204, 21, 0.08);
+}
+
+.silver-card {
+  border-color: rgba(203, 213, 225, 0.28);
+  box-shadow: 0 8px 30px rgba(203, 213, 225, 0.06);
+}
+
+.bronze-card {
+  border-color: rgba(251, 146, 60, 0.28);
+  box-shadow: 0 8px 30px rgba(251, 146, 60, 0.06);
+}
+
+.top-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.medal {
+  font-size: 2rem;
+}
+
+.top-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.top-score {
+  font-size: 2.4rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.top-meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  strong {
+    font-size: 1rem;
+    color: #ffffff;
+  }
+}
+
+.meta-label {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.top-date {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.panel-card {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(9, 14, 27, 0.98));
+  border: 1px solid rgba(110, 231, 183, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  color: #f8fafc;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+
+  h2 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+}
+
+.count-chip {
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.ranking-table {
+  width: 100%;
+  background: transparent !important;
+}
+
+.position-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.18);
+  color: #bfdbfe;
+  font-weight: 800;
+}
+
+.score-value {
+  color: #6ee7b7;
+  font-weight: 800;
+}
+
+.empty-state {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  color: #94a3b8;
+
+  mat-icon {
+    font-size: 42px;
+    width: 42px;
+    height: 42px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+:host ::ng-deep .ranking-table .mat-mdc-header-row {
+  background: rgba(15, 23, 42, 0.85);
+}
+
+:host ::ng-deep .ranking-table .mat-mdc-header-cell {
+  color: #94a3b8 !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2) !important;
+}
+
+:host ::ng-deep .ranking-table .mat-mdc-cell {
+  color: #f8fafc !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08) !important;
+}
+
+:host ::ng-deep .ranking-table .mat-mdc-row {
+  background: transparent !important;
+}
+
+:host ::ng-deep .ranking-table .mat-mdc-row:hover {
+  background: rgba(59, 130, 246, 0.06) !important;
+}
+
+:host ::ng-deep .ranking-table .mdc-data-table__header-cell {
+  color: #94a3b8 !important;
+}
+
+:host ::ng-deep .ranking-table .mdc-data-table__cell {
+  color: #f8fafc !important;
+}
+
+@media (max-width: 1100px) {
+  .top3-grid {
+    grid-template-columns: 1fr;
+  }
+}

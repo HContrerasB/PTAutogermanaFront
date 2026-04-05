@@ -1,0 +1,126 @@
+<div class="zombie-form-page">
+  <div class="page-title">
+    <h1>{{ isEditMode ? 'Editar zombie' : 'Crear zombie' }}</h1>
+    <p>
+      {{ isEditMode
+        ? 'Actualiza la configuración del zombie seleccionado.'
+        : 'Registra un nuevo zombie para las simulaciones.' }}
+    </p>
+  </div>
+
+  <mat-card class="panel-card form-card">
+    <div class="card-header">
+      <h2>{{ isEditMode ? 'Modificación de zombie' : 'Nuevo zombie' }}</h2>
+      <button mat-stroked-button class="btn-secondary" type="button" (click)="volver()">
+        Volver
+      </button>
+    </div>
+
+    <div *ngIf="loading" class="loading-box">
+      <mat-icon>hourglass_top</mat-icon>
+      <span>Cargando información del zombie...</span>
+    </div>
+
+    <form [formGroup]="form" class="zombie-form" *ngIf="!loading">
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo</mat-label>
+          <input matInput formControlName="tipo" placeholder="Ej: Tank, Runner, Brute-X" />
+          <mat-error *ngIf="submitted && f['tipo'].hasError('required')">
+            El tipo es obligatorio.
+          </mat-error>
+          <mat-error *ngIf="submitted && f['tipo'].hasError('maxlength')">
+            El tipo supera la longitud permitida.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Tiempo disparo</mat-label>
+          <input matInput type="number" formControlName="tiempoDisparo" />
+          <mat-error *ngIf="submitted && f['tiempoDisparo'].hasError('required')">
+            El tiempo disparo es obligatorio.
+          </mat-error>
+          <mat-error *ngIf="submitted && f['tiempoDisparo'].hasError('min')">
+            Debe ser mayor o igual a 0.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Balas necesarias</mat-label>
+          <input matInput type="number" formControlName="balasNecesarias" />
+          <mat-error *ngIf="submitted && f['balasNecesarias'].hasError('required')">
+            Las balas necesarias son obligatorias.
+          </mat-error>
+          <mat-error *ngIf="submitted && f['balasNecesarias'].hasError('min')">
+            Debe ser mayor o igual a 0.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Puntaje base</mat-label>
+          <input matInput type="number" formControlName="puntajeBase" />
+          <mat-error *ngIf="submitted && f['puntajeBase'].hasError('required')">
+            El puntaje base es obligatorio.
+          </mat-error>
+          <mat-error *ngIf="submitted && f['puntajeBase'].hasError('min')">
+            Debe ser mayor o igual a 0.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nivel amenaza</mat-label>
+          <input matInput type="number" formControlName="nivelAmenaza" />
+          <mat-error *ngIf="submitted && f['nivelAmenaza'].hasError('required')">
+            El nivel de amenaza es obligatorio.
+          </mat-error>
+          <mat-error *ngIf="submitted && f['nivelAmenaza'].hasError('min')">
+            Debe ser mayor o igual a 0.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="activo">
+            <mat-option *ngFor="let item of estadoOptions" [value]="item.value">
+              {{ item.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="submitted && f['activo'].hasError('required')">
+            El estado es obligatorio.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="successMessage" class="success-box">
+        <mat-icon>check_circle</mat-icon>
+        <span>{{ successMessage }}</span>
+      </div>
+
+      <div *ngIf="errorMessage" class="error-box">
+        <mat-icon>error</mat-icon>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <div class="form-actions">
+        <button
+          mat-raised-button
+          class="btn-primary"
+          type="button"
+          (click)="guardar()"
+          [disabled]="saving || deleting">
+          {{ saving ? 'Guardando...' : (isEditMode ? 'Actualizar' : 'Guardar') }}
+        </button>
+
+        <button
+          *ngIf="isEditMode"
+          mat-stroked-button
+          class="btn-danger"
+          type="button"
+          (click)="eliminar()"
+          [disabled]="saving || deleting">
+          {{ deleting ? 'Eliminando...' : 'Eliminar' }}
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

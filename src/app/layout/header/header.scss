@@ -1,0 +1,30 @@
+.header-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+p {
+  margin: 6px 0 0;
+  color: #8b93a7;
+  font-size: 0.95rem;
+}
+
+.status-badge {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(52, 211, 153, 0.12);
+  color: #6ee7b7;
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  font-weight: 700;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,186 @@
+<div class="simulacion-page">
+    <div class="page-title">
+        <h1>Simulación de defensa</h1>
+        <p>
+            Configura balas y tiempo disponibles para calcular la mejor estrategia contra la oleada zombie.
+        </p>
+    </div>
+
+    <div class="top-grid">
+        <mat-card class="panel-card form-card">
+            <div class="card-header">
+                <h2>Parámetros de entrada</h2>
+                <span class="status-chip">Táctica activa</span>
+            </div>
+
+            <form [formGroup]="simulationForm" class="simulation-form">
+                <div class="field-group">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Balas disponibles</mat-label>
+                        <input matInput type="number" formControlName="balas" placeholder="Ej: 20" />
+                        <mat-error *ngIf="f['balas'].hasError('required')">
+                            Las balas son obligatorias.
+                        </mat-error>
+                        <mat-error *ngIf="f['balas'].hasError('min')">
+                            Debe ser mayor a 0.
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Tiempo disponible (segundos)</mat-label>
+                        <input matInput type="number" formControlName="tiempo" placeholder="Ej: 60" />
+                        <mat-error *ngIf="f['tiempo'].hasError('required')">
+                            El tiempo es obligatorio.
+                        </mat-error>
+                        <mat-error *ngIf="f['tiempo'].hasError('min')">
+                            Debe ser mayor a 0.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="actions">
+                    <button mat-raised-button class="btn-primary" type="button" (click)="simular()"
+                        [disabled]="loading">
+                        {{ loading ? 'Simulando...' : 'Calcular estrategia' }}
+                    </button>
+
+                    <button mat-stroked-button class="btn-secondary" type="button" (click)="limpiar()">
+                        Limpiar
+                    </button>
+                </div>
+            </form>
+
+            <div *ngIf="errorMessage" class="error-box">
+                <mat-icon>error</mat-icon>
+                <span>{{ errorMessage }}</span>
+            </div>
+        </mat-card>
+
+        <mat-card class="panel-card visual-card">
+            <div class="card-header">
+                <h2>Estado de la simulación</h2>
+            </div>
+
+            <div class="visual-zone">
+                <div *ngIf="!simulationStarted && !loading" class="idle-state">
+                    <div class="radar-circle">
+                        <div class="radar-core"></div>
+                    </div>
+                    <h3>Sistema en espera</h3>
+                    <p>Ingresa los parámetros y ejecuta una simulación.</p>
+                </div>
+
+                <div *ngIf="loading" class="loading-state">
+                    <div class="pulse-ring"></div>
+                    <div class="pulse-ring ring-delay"></div>
+                    <div class="zombie-icon">🧟</div>
+                    <h3>Procesando ataque...</h3>
+                    <p>Calculando la estrategia más eficiente.</p>
+                </div>
+
+                <div *ngIf="!loading && resultado" class="success-state">
+                    <div class="impact-icon">💥</div>
+                    <h3>Simulación completada</h3>
+                    <p>La defensa fue procesada correctamente.</p>
+                </div>
+
+                <div class="gif-placeholder">
+                    <img src="/assets/gifs/zombie-impact.gif" alt="Impacto zombie" class="simulation-gif" />
+                </div>
+            </div>
+        </mat-card>
+    </div>
+
+    <div class="bottom-grid">
+        <mat-card class="panel-card result-card">
+            <div class="card-header">
+                <h2>Resultado óptimo</h2>
+            </div>
+
+            <ng-container *ngIf="resultado; else noResultado">
+                <div class="result-metrics">
+                    <div class="metric-box">
+                        <span class="metric-label">Puntaje</span>
+                        <strong>{{ resultado.puntaje }}</strong>
+                    </div>
+
+                    <div class="metric-box">
+                        <span class="metric-label">Zombies eliminados</span>
+                        <strong>{{ resultado.zombiesEliminados }}</strong>
+                    </div>
+
+                    <div class="metric-box">
+                        <span class="metric-label">Balas usadas</span>
+                        <strong>{{ resultado.balasUsadas }}</strong>
+                    </div>
+
+                    <div class="metric-box">
+                        <span class="metric-label">Tiempo usado</span>
+                        <strong>{{ resultado.tiempoUsado }} s</strong>
+                    </div>
+                </div>
+
+                <div class="strategy-box">
+                    <span class="strategy-title">Estrategia recomendada</span>
+
+                    <ul class="strategy-list">
+                        <li *ngFor="let item of resultado.estrategia">
+                            {{ item }}
+                        </li>
+                    </ul>
+                </div>
+            </ng-container>
+
+            <ng-template #noResultado>
+                <div class="empty-result">
+                    <mat-icon>sports_esports</mat-icon>
+                    <p>Aún no hay resultados. Ejecuta una simulación para ver la estrategia óptima.</p>
+                </div>
+            </ng-template>
+        </mat-card>
+
+        <mat-card class="panel-card history-card">
+            <div class="card-header">
+                <h2>Historial reciente</h2>
+            </div>
+
+            <div class="table-wrapper" *ngIf="historial.length > 0; else emptyHistory">
+                <table mat-table [dataSource]="historial" class="history-table">
+                    <ng-container matColumnDef="fecha">
+                        <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                        <td mat-cell *matCellDef="let row">{{ row.fecha }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="balas">
+                        <th mat-header-cell *matHeaderCellDef>Balas</th>
+                        <td mat-cell *matCellDef="let row">{{ row.balas }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="tiempo">
+                        <th mat-header-cell *matHeaderCellDef>Tiempo</th>
+                        <td mat-cell *matCellDef="let row">{{ row.tiempo }} s</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="puntaje">
+                        <th mat-header-cell *matHeaderCellDef>Puntaje</th>
+                        <td mat-cell *matCellDef="let row">{{ row.puntaje }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="resultado">
+                        <th mat-header-cell *matHeaderCellDef>Resultado</th>
+                        <td mat-cell *matCellDef="let row">{{ row.resultado }}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+
+            <ng-template #emptyHistory>
+                <div class="empty-history">
+                    <p>No hay simulaciones registradas todavía.</p>
+                </div>
+            </ng-template>
+        </mat-card>
+    </div>
+</div>

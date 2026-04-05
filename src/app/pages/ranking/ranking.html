@@ -1,0 +1,135 @@
+<div class="ranking-page">
+    <div class="page-title">
+        <h1>Ranking histórico</h1>
+        <p>
+            Clasificación de simulaciones ordenadas por puntaje total, eficiencia de balas y tiempo usado.
+        </p>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-box">
+        <mat-icon>error</mat-icon>
+        <span>{{ errorMessage }}</span>
+    </div>
+
+    <div class="top3-grid" *ngIf="top3.length > 0">
+        <mat-card class="top-card" *ngFor="let item of top3; let i = index" [ngClass]="{
+        'gold-card': i === 0,
+        'silver-card': i === 1,
+        'bronze-card': i === 2
+      }">
+
+            <div class="top-badge">
+                <span class="medal">{{ getMedalla(i) }}</span>
+                <span class="top-title">{{ getTituloTop(i) }}</span>
+            </div>
+
+            <div class="top-score">{{ item.puntajeTotal }}</div>
+
+            <div class="top-meta">
+                <div>
+                    <span class="meta-label">Simulación</span>
+                    <strong>#{{ item.simulationId }}</strong>
+                </div>
+
+                <div>
+                    <span class="meta-label">Balas usadas</span>
+                    <strong>{{ item.balasUsadas }}</strong>
+                </div>
+
+                <div>
+                    <span class="meta-label">Tiempo usado</span>
+                    <strong>{{ item.tiempoUsado }} s</strong>
+                </div>
+            </div>
+
+            <div class="top-date">
+                {{ formatearFecha(item.fecha) }}
+            </div>
+        </mat-card>
+    </div>
+
+    <mat-card class="panel-card table-card">
+        <div class="card-header">
+            <h2>Tabla completa de ranking</h2>
+            <span class="count-chip">{{ ranking.length }} registros</span>
+        </div>
+
+        <div class="table-wrapper" *ngIf="ranking.length > 0; else emptyRanking">
+            <table mat-table [dataSource]="rankingPaginado" class="ranking-table">
+
+                <ng-container matColumnDef="posicion">
+                    <th mat-header-cell *matHeaderCellDef>Pos.</th>
+                    <td mat-cell *matCellDef="let row; let i = index">
+                        <span class="position-badge">{{ obtenerPosicion(i) }}</span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="simulationId">
+                    <th mat-header-cell *matHeaderCellDef>ID Sim.</th>
+                    <td mat-cell *matCellDef="let row">#{{ row.simulationId }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="fecha">
+                    <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                    <td mat-cell *matCellDef="let row">{{ formatearFecha(row.fecha) }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="balasDisponibles">
+                    <th mat-header-cell *matHeaderCellDef>Balas disp.</th>
+                    <td mat-cell *matCellDef="let row">{{ row.balasDisponibles }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="tiempoDisponible">
+                    <th mat-header-cell *matHeaderCellDef>Tiempo disp.</th>
+                    <td mat-cell *matCellDef="let row">{{ row.tiempoDisponible }} s</td>
+                </ng-container>
+
+                <ng-container matColumnDef="balasUsadas">
+                    <th mat-header-cell *matHeaderCellDef>Balas usadas</th>
+                    <td mat-cell *matCellDef="let row">{{ row.balasUsadas }}</td>
+                </ng-container>
+                <ng-container matColumnDef="ZombiesMuertos">
+                    <th mat-header-cell *matHeaderCellDef>Zombies Muertos</th>
+                    <td mat-cell *matCellDef="let row">{{ row.totalZombiesEliminados }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="tiempoUsado">
+                    <th mat-header-cell *matHeaderCellDef>Tiempo usado</th>
+                    <td mat-cell *matCellDef="let row">{{ row.tiempoUsado }} s</td>
+                </ng-container>
+
+                <ng-container matColumnDef="puntajeTotal">
+                    <th mat-header-cell *matHeaderCellDef>Puntaje</th>
+                    <td mat-cell *matCellDef="let row">
+                        <strong class="score-value">{{ row.puntajeTotal }}</strong>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <div class="pagination-container" *ngIf="ranking.length > pageSize">
+            <button mat-stroked-button type="button" class="page-btn" (click)="irPaginaAnterior()"
+                [disabled]="currentPage === 1">
+                Anterior
+            </button>
+
+            <span class="page-info">
+                Página {{ currentPage }} de {{ totalPages }}
+            </span>
+
+            <button mat-stroked-button type="button" class="page-btn" (click)="irPaginaSiguiente()"
+                [disabled]="currentPage === totalPages">
+                Siguiente
+            </button>
+        </div>
+        <ng-template #emptyRanking>
+            <div class="empty-state">
+                <mat-icon>emoji_events</mat-icon>
+                <p>No hay simulaciones registradas todavía.</p>
+            </div>
+        </ng-template>
+
+    </mat-card>
+</div>
